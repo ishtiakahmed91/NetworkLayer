@@ -15,7 +15,8 @@ enum MovieNetworkEndPoint {
     case topRatedMovies
     case upcomingMovies
 
-    static var responseType = MovieList.self
+// TODO
+//    static var responseType = MovieList.self
 
 //    func responseTypee() -> Codable {
 //         switch self {

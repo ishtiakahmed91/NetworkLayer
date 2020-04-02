@@ -15,7 +15,7 @@ struct Constants {
 
         struct ContentType {
             static let key = "Content-Type"
-            static let applicationJson = "Content-Type"
+            static let applicationJson = "application/json"
             static let applicationURLEncoded = "application/x-www-form-urlencoded; charset=utf-8"
         }
 
@@ -39,5 +39,4 @@ struct Constants {
             }
         }
     }
-
 }

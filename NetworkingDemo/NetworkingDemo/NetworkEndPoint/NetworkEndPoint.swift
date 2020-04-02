@@ -11,12 +11,14 @@ import Foundation
 public typealias Headers = [String: String]
 public typealias Parameters = [String: Any]
 
+// MARK: - NetworkEnvironment
 enum NetworkEnvironment {
     case qa
     case production
 }
 
-public enum RESTMethod: String {
+// MARK: - RESTMethod
+enum RESTMethod: String {
     case get = "GET"
     case post = "POST"
     case put = "PUT"
@@ -24,9 +26,8 @@ public enum RESTMethod: String {
     case delete = "DELETE"
 }
 
-
 // MARK: - NetworkEndPoint Implementation
-public protocol NetworkEndPoint {
+protocol NetworkEndPoint {
     var baseURLString: String { get }
     var path: String { get }
     var restMethod: RESTMethod { get }

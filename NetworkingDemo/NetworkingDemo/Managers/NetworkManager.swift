@@ -16,7 +16,7 @@ class NetworkManager {
     static var networkEnvironment : NetworkEnvironment = .production
 
     func networkRequest<T: Codable>(for networkEndPoint: NetworkEndPoint,
-                                    type: T.Type,
+                                    responseObjectType: T.Type,
                                     completionBlock: @escaping ResponseCompletionBlock) {
 
         guard Reachability().isReachable else {
@@ -54,7 +54,7 @@ class NetworkManager {
             }
 
             do {
-                let result = try JSONDecoder().decode(type.self, from: data as Data)
+                let result = try JSONDecoder().decode(responseObjectType.self, from: data as Data)
                 completionBlock(.success(result))
             } catch {
                 completionBlock(.failure(.jsonSerializationFailed))
@@ -65,8 +65,9 @@ class NetworkManager {
     }
 }
 
+// MARK: - Private Methods
+
 private extension NetworkManager {
-    // MARK: - 
     func generateRequest(using networkEndPoint: NetworkEndPoint) -> URLRequestResult {
         guard let baseURL = URL(string: networkEndPoint.baseURLString) else {
             return .failure(.urlMissing)

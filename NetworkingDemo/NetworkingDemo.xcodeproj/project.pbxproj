@@ -95,7 +95,7 @@
 		DD56BDF2243377D5001FA46C /* NetworkingDemo */ = {
 			isa = PBXGroup;
 			children = (
-				DD8D4A8E24363C3500726D90 /* Utillities */,
+				DD8D4A8E24363C3500726D90 /* Utilities */,
 				DD8D4A8724346B0700726D90 /* NetworkEndPoint */,
 				DD56BE1824337869001FA46C /* Managers */,
 				DD56BE1724337862001FA46C /* Models */,
@@ -162,13 +162,13 @@
 			path = NetworkEndPoint;
 			sourceTree = "<group>";
 		};
-		DD8D4A8E24363C3500726D90 /* Utillities */ = {
+		DD8D4A8E24363C3500726D90 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
 				DD56BE1A243378A1001FA46C /* Constants.swift */,
 				DD8D4A8C2435303C00726D90 /* Reachability.swift */,
 			);
-			path = Utillities;
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
