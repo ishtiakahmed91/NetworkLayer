@@ -1,24 +1,22 @@
 //
-//  NetworkManager.swift
+//  NetworkController.swift
 //  NetworkingDemo
 //
-//  Created by Ishtiak Ahmed on 01.04.20.
+//  Created by Ishtiak Ahmed on 02.04.20.
 //  Copyright © 2020 Ishtiak Ahmed. All rights reserved.
 //
 
 import Foundation
 
-typealias ResponseCompletionBlock = (Result<Any?, NetworkError>) -> Void
 typealias URLRequestResult = Result<URLRequest, NetworkError>
+typealias DataCompletionBlock = (Result<Data, NetworkError>) -> Void
 
-class NetworkManager {
-    static var sharedInstance = NetworkManager()
-    static var networkEnvironment : NetworkEnvironment = .production
+protocol NetworkControlling {
+    func networkRequest(for networkEndPoint: NetworkEndPoint, completionBlock: @escaping DataCompletionBlock)
+}
 
-    func networkRequest<T: Codable>(for networkEndPoint: NetworkEndPoint,
-                                    responseObjectType: T.Type,
-                                    completionBlock: @escaping ResponseCompletionBlock) {
-
+class NetworkController: NetworkControlling {
+    func networkRequest(for networkEndPoint: NetworkEndPoint, completionBlock: @escaping DataCompletionBlock) {
         guard Reachability().isReachable else {
             completionBlock(.failure(.internetNotReachable))
             return
@@ -53,21 +51,17 @@ class NetworkManager {
                 return
             }
 
-            do {
-                let result = try JSONDecoder().decode(responseObjectType.self, from: data as Data)
-                completionBlock(.success(result))
-            } catch {
-                completionBlock(.failure(.jsonSerializationFailed))
-            }
+            completionBlock(.success(data))
+
         }
 
         dataTask.resume()
     }
 }
 
-// MARK: - Private Methods
+// MARK: - Private
 
-private extension NetworkManager {
+private extension NetworkController {
     func generateRequest(using networkEndPoint: NetworkEndPoint) -> URLRequestResult {
         guard let baseURL = URL(string: networkEndPoint.baseURLString) else {
             return .failure(.urlMissing)

@@ -39,7 +39,7 @@ protocol NetworkEndPoint {
 // MARK: - Default NetworkEndPoint Implementation
 extension NetworkEndPoint {
     var baseURLString: String {
-        switch NetworkManager.networkEnvironment {
+        switch ManagerProvider.sharedInstance.networkEnvironment {
         case .qa:
             return Constants.API.BaseURL.qa
         case .production:

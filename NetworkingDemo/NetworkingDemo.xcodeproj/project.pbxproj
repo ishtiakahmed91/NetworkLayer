@@ -20,8 +20,10 @@
 		DD56BE212433A10C001FA46C /* MovieByPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD56BE202433A10C001FA46C /* MovieByPage.swift */; };
 		DD56BE232433ADC9001FA46C /* MovieList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD56BE222433ADC9001FA46C /* MovieList.swift */; };
 		DD8D4A8924346B3200726D90 /* MovieNetworkEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8D4A8824346B3200726D90 /* MovieNetworkEndPoint.swift */; };
-		DD8D4A8B2434F24400726D90 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8D4A8A2434F24400726D90 /* NetworkManager.swift */; };
 		DD8D4A8D2435303C00726D90 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8D4A8C2435303C00726D90 /* Reachability.swift */; };
+		DD8D4A902436751000726D90 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8D4A8F2436751000726D90 /* NetworkController.swift */; };
+		DD8D4A92243676B100726D90 /* ManagerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8D4A91243676B100726D90 /* ManagerProvider.swift */; };
+		DD8D4A94243676FB00726D90 /* MovieManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8D4A93243676FB00726D90 /* MovieManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,8 +54,10 @@
 		DD56BE202433A10C001FA46C /* MovieByPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieByPage.swift; sourceTree = "<group>"; };
 		DD56BE222433ADC9001FA46C /* MovieList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieList.swift; sourceTree = "<group>"; };
 		DD8D4A8824346B3200726D90 /* MovieNetworkEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieNetworkEndPoint.swift; sourceTree = "<group>"; };
-		DD8D4A8A2434F24400726D90 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		DD8D4A8C2435303C00726D90 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		DD8D4A8F2436751000726D90 /* NetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
+		DD8D4A91243676B100726D90 /* ManagerProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerProvider.swift; sourceTree = "<group>"; };
+		DD8D4A93243676FB00726D90 /* MovieManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,7 +152,9 @@
 		DD56BE1824337869001FA46C /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				DD8D4A8A2434F24400726D90 /* NetworkManager.swift */,
+				DD8D4A8F2436751000726D90 /* NetworkController.swift */,
+				DD8D4A91243676B100726D90 /* ManagerProvider.swift */,
+				DD8D4A93243676FB00726D90 /* MovieManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -272,14 +278,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD8D4A8B2434F24400726D90 /* NetworkManager.swift in Sources */,
 				DD8D4A8924346B3200726D90 /* MovieNetworkEndPoint.swift in Sources */,
+				DD8D4A94243676FB00726D90 /* MovieManager.swift in Sources */,
 				DD56BDF8243377D5001FA46C /* ViewController.swift in Sources */,
 				DD56BDF4243377D5001FA46C /* AppDelegate.swift in Sources */,
 				DD56BDF6243377D5001FA46C /* SceneDelegate.swift in Sources */,
 				DD56BE1D243379C3001FA46C /* NetworkEndPoint.swift in Sources */,
 				DD56BE1B243378A1001FA46C /* Constants.swift in Sources */,
 				DD56BE212433A10C001FA46C /* MovieByPage.swift in Sources */,
+				DD8D4A92243676B100726D90 /* ManagerProvider.swift in Sources */,
+				DD8D4A902436751000726D90 /* NetworkController.swift in Sources */,
 				DD56BE232433ADC9001FA46C /* MovieList.swift in Sources */,
 				DD56BE1F24338B21001FA46C /* NetworkError.swift in Sources */,
 				DD8D4A8D2435303C00726D90 /* Reachability.swift in Sources */,

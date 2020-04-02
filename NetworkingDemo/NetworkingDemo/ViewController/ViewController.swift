@@ -14,14 +14,13 @@ class ViewController: UIViewController {
     }
 
     @IBAction func fetchData(_ sender: Any) {
-
-        NetworkManager.sharedInstance.networkRequest(for: MovieNetworkEndPoint.topRatedMovies, responseObjectType: MovieList.self, completionBlock: { result in
+        ManagerProvider.sharedInstance.movieManager.movieList { result in
             switch result {
             case .success(let resultValue):
                 print("\(String(describing: resultValue))")
             case .failure(let networkError):
                 print(networkError.description)
             }
-        })
+        }
     }
 }

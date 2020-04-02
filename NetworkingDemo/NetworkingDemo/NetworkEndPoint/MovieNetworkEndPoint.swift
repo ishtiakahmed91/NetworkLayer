@@ -66,5 +66,4 @@ extension MovieNetworkEndPoint: NetworkEndPoint {
     var urlParameters: Parameters? {
         return [Constants.API.MovieAPIEndPoint.URLParameter.apiKey: Constants.API.MovieAPIEndPoint.URLParameter.apiKeyValue]
     }
-
 }
