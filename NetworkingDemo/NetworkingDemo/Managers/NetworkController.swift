@@ -23,7 +23,7 @@ class NetworkController: NetworkControlling {
         }
 
         let configuration = URLSessionConfiguration.default
-        configuration.timeoutIntervalForRequest = Constants.API.timeoutInterval
+        configuration.timeoutIntervalForRequest = Constants.EndPoint.timeoutInterval
 
         let session = URLSession(configuration: configuration)
         var urlRequest: URLRequest?
@@ -74,7 +74,7 @@ private extension NetworkController {
         let url = baseURL.appendingPathComponent(networkEndPoint.path)
         var urlRequest = URLRequest(url: url,
                                     cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,
-                                    timeoutInterval: Constants.API.timeoutInterval)
+                                    timeoutInterval: Constants.EndPoint.timeoutInterval)
         urlRequest.httpMethod = networkEndPoint.restMethod.rawValue
 
         appendHeaders(networkEndPoint.headers, in: &urlRequest)
@@ -117,8 +117,8 @@ private extension NetworkController {
 
             urlRequest.url = urlComponents.url
 
-            if urlRequest.value(forHTTPHeaderField: Constants.API.ContentType.key) == nil {
-                urlRequest.setValue(Constants.API.ContentType.applicationURLEncoded, forHTTPHeaderField: Constants.API.ContentType.key)
+            if urlRequest.value(forHTTPHeaderField: Constants.EndPoint.ContentType.key) == nil {
+                urlRequest.setValue(Constants.EndPoint.ContentType.applicationURLEncoded, forHTTPHeaderField: Constants.EndPoint.ContentType.key)
             }
         }
     }
@@ -129,8 +129,8 @@ private extension NetworkController {
             let httpBody = try? JSONSerialization.data(withJSONObject: bodyParameters, options: .prettyPrinted) {
             urlRequest.httpBody = httpBody
 
-            if urlRequest.value(forHTTPHeaderField: Constants.API.ContentType.key) == nil {
-                urlRequest.setValue(Constants.API.ContentType.applicationJson, forHTTPHeaderField: Constants.API.ContentType.key)
+            if urlRequest.value(forHTTPHeaderField: Constants.EndPoint.ContentType.key) == nil {
+                urlRequest.setValue(Constants.EndPoint.ContentType.applicationJson, forHTTPHeaderField: Constants.EndPoint.ContentType.key)
             }
         }
     }

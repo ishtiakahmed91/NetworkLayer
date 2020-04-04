@@ -37,15 +37,15 @@ extension MovieNetworkEndPoint: NetworkEndPoint {
     var path: String {
           switch self {
           case .latestMovies:
-              return Constants.API.MovieNetworkEndPoint.Path.latest
+              return Constants.EndPoint.Movie.Path.latest
           case .nowPlayingMovies:
-              return Constants.API.MovieNetworkEndPoint.Path.nowPlaying
+              return Constants.EndPoint.Movie.Path.nowPlaying
           case .popularMovies:
-              return Constants.API.MovieNetworkEndPoint.Path.popular
+              return Constants.EndPoint.Movie.Path.popular
           case .topRatedMovies:
-              return Constants.API.MovieNetworkEndPoint.Path.topRated
+              return Constants.EndPoint.Movie.Path.topRated
           case .upcomingMovies:
-              return Constants.API.MovieNetworkEndPoint.Path.upcoming
+              return Constants.EndPoint.Movie.Path.upcoming
           }
       }
 
@@ -54,7 +54,7 @@ extension MovieNetworkEndPoint: NetworkEndPoint {
     }
 
     var urlParameters: Parameters? {
-        return [Constants.API.MovieNetworkEndPoint.URLParameter.apiKey: Constants.API.MovieNetworkEndPoint.URLParameter.apiKeyValue]
+        return [Constants.EndPoint.Movie.URLParameter.apiKey: Constants.EndPoint.Movie.URLParameter.apiKeyValue]
     }
 
     var bodyParameters: Parameters? {

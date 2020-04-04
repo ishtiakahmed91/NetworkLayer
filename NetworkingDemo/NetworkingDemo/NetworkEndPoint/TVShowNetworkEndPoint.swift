@@ -10,38 +10,30 @@ import Foundation
 
 enum TVShowNetworkEndPoint {
     case latestTVShows
-    case popularTVShows
-    case reviews(tvId: String)
     case credits(tvId: String)
     case addRating(tvId: String)
-    case deleteRating(tvId: String)
+    case deleteRating(tvId: String, value: Float)
 }
 
 extension TVShowNetworkEndPoint: NetworkEndPoint {
     var path: String {
         switch self {
         case .latestTVShows:
-            return Constants.API.TVShowNetworkEndPoint.Path.latest
-        case .popularTVShows:
-            return Constants.API.TVShowNetworkEndPoint.Path.popular
+            return Constants.EndPoint.TVShow.Path.latest
         case .credits(let tvId):
-            return Constants.API.TVShowNetworkEndPoint.SemiPath.tv
+            return Constants.EndPoint.TVShow.SemiPath.tv
                 .appendPath(tvId)
-                .appendPath(Constants.API.TVShowNetworkEndPoint.SemiPath.credits)
-        case .reviews(let tvId):
-            return Constants.API.TVShowNetworkEndPoint.SemiPath.tv
+                .appendPath(Constants.EndPoint.TVShow.SemiPath.credits)
+        case .addRating(let tvId), .deleteRating(let tvId, _):
+            return Constants.EndPoint.TVShow.SemiPath.tv
             .appendPath(tvId)
-            .appendPath(Constants.API.TVShowNetworkEndPoint.SemiPath.reviews)
-        case .addRating(let tvId), .deleteRating(let tvId):
-            return Constants.API.TVShowNetworkEndPoint.SemiPath.tv
-            .appendPath(tvId)
-            .appendPath(Constants.API.TVShowNetworkEndPoint.SemiPath.rating)
+            .appendPath(Constants.EndPoint.TVShow.SemiPath.rating)
         }
     }
 
     var restMethod: RESTMethod {
         switch self {
-        case .latestTVShows, .popularTVShows, .credits, .reviews:
+        case .latestTVShows, .credits:
             return .get
         case .addRating:
             return .post
@@ -51,11 +43,16 @@ extension TVShowNetworkEndPoint: NetworkEndPoint {
     }
 
     var urlParameters: Parameters? {
-        return [Constants.API.MovieNetworkEndPoint.URLParameter.apiKey: Constants.API.MovieNetworkEndPoint.URLParameter.apiKeyValue]
+        return [Constants.EndPoint.Movie.URLParameter.apiKey: Constants.EndPoint.Movie.URLParameter.apiKeyValue]
     }
 
     var bodyParameters: Parameters? {
-        return nil
+        switch self {
+        case .latestTVShows, .credits, .addRating:
+            return nil
+        case .deleteRating(_, let value):
+            return [Constants.EndPoint.TVShow.BodyParameter.valueKey: value]
+        }
     }
 
     var headers: Headers? {

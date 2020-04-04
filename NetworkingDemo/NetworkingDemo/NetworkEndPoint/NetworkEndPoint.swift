@@ -41,9 +41,9 @@ extension NetworkEndPoint {
     var baseURLString: String {
         switch ManagerProvider.sharedInstance.networkEnvironment {
         case .qa:
-            return Constants.API.BaseURL.qa
+            return Constants.EndPoint.BaseURL.qa
         case .production:
-            return Constants.API.BaseURL.production
+            return Constants.EndPoint.BaseURL.production
         }
     }
 }
