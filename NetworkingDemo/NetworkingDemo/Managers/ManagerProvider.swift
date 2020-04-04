@@ -17,6 +17,9 @@ protocol ManagerProviding {
     /// Instance to access MovieManagement
     var movieManager: MovieManagement! { get }
 
+    /// Instance to access TVShowManagement
+    var tvShowManager: TVShowManagement! { get }
+
     /// Instance of environment
     var networkEnvironment : NetworkEnvironment {get}
 
@@ -28,10 +31,12 @@ protocol ManagerProviding {
 class ManagerProvider: ManagerProviding {
     static var sharedInstance: ManagerProviding = ManagerProvider()
     var movieManager: MovieManagement!
+    var tvShowManager: TVShowManagement!
     var networkEnvironment : NetworkEnvironment = .production
 
     public func updateManagers() {
         movieManager = MovieManager(networkController: NetworkController())
+        tvShowManager = TVShowManager(networkController: NetworkController())
         networkEnvironment = .production
     }
 

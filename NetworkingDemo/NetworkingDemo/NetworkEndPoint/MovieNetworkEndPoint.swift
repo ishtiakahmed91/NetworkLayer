@@ -31,7 +31,6 @@ enum MovieNetworkEndPoint {
              return MovieList.self
          }
      }
-    
 }
 
 extension MovieNetworkEndPoint: NetworkEndPoint {

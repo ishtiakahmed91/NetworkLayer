@@ -22,5 +22,14 @@ class ViewController: UIViewController {
                 print(networkError.description)
             }
         }
+
+        ManagerProvider.sharedInstance.tvShowManager.tvShowCredits(tvId: "1", completionBlock: { result in
+            switch result {
+            case .success(let resultValue):
+                print("\(String(describing: resultValue))")
+            case .failure(let networkError):
+                print(networkError.description)
+            }
+        })
     }
 }

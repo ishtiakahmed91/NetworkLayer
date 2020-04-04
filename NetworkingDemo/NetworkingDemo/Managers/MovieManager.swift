@@ -26,8 +26,11 @@ final class MovieManager: MovieManagement {
         networkController.networkRequest(for: MovieNetworkEndPoint.topRatedMovies, responseType: MovieList.self) { result in
             switch result {
             case .success(let data):
-                let movieList = data as? MovieList
-                print(movieList?.movies?[0].overview)
+                guard let movieList = data as? MovieList else {
+                    completionBlock(.failure(.encodingFailed))
+                    return
+                }
+                completionBlock(.success(movieList))
             case .failure(let networkError):
                 completionBlock(.failure(networkError))
             }

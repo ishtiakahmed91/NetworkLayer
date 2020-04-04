@@ -26,6 +26,8 @@
 		DD8D4A94243676FB00726D90 /* MovieManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8D4A93243676FB00726D90 /* MovieManager.swift */; };
 		DD8D4A962438929100726D90 /* TVShowNetworkEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8D4A952438929000726D90 /* TVShowNetworkEndPoint.swift */; };
 		DD8D4A982438C6D500726D90 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8D4A972438C6D500726D90 /* StringExtension.swift */; };
+		DD8D4A9E2438D5B800726D90 /* TVShowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8D4A9D2438D5B800726D90 /* TVShowManager.swift */; };
+		DD8D4AA02438D73D00726D90 /* CastList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8D4A9F2438D73D00726D90 /* CastList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,8 @@
 		DD8D4A93243676FB00726D90 /* MovieManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieManager.swift; sourceTree = "<group>"; };
 		DD8D4A952438929000726D90 /* TVShowNetworkEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowNetworkEndPoint.swift; sourceTree = "<group>"; };
 		DD8D4A972438C6D500726D90 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		DD8D4A9D2438D5B800726D90 /* TVShowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowManager.swift; sourceTree = "<group>"; };
+		DD8D4A9F2438D73D00726D90 /* CastList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +153,7 @@
 				DD56BE1E24338B21001FA46C /* NetworkError.swift */,
 				DD56BE202433A10C001FA46C /* MovieByPage.swift */,
 				DD56BE222433ADC9001FA46C /* MovieList.swift */,
+				DD8D4A9F2438D73D00726D90 /* CastList.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -159,6 +164,7 @@
 				DD8D4A8F2436751000726D90 /* NetworkController.swift */,
 				DD8D4A91243676B100726D90 /* ManagerProvider.swift */,
 				DD8D4A93243676FB00726D90 /* MovieManager.swift */,
+				DD8D4A9D2438D5B800726D90 /* TVShowManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -288,9 +294,11 @@
 				DD8D4A94243676FB00726D90 /* MovieManager.swift in Sources */,
 				DD8D4A982438C6D500726D90 /* StringExtension.swift in Sources */,
 				DD56BDF8243377D5001FA46C /* ViewController.swift in Sources */,
+				DD8D4A9E2438D5B800726D90 /* TVShowManager.swift in Sources */,
 				DD56BDF4243377D5001FA46C /* AppDelegate.swift in Sources */,
 				DD56BDF6243377D5001FA46C /* SceneDelegate.swift in Sources */,
 				DD56BE1D243379C3001FA46C /* NetworkEndPoint.swift in Sources */,
+				DD8D4AA02438D73D00726D90 /* CastList.swift in Sources */,
 				DD56BE1B243378A1001FA46C /* Constants.swift in Sources */,
 				DD56BE212433A10C001FA46C /* MovieByPage.swift in Sources */,
 				DD8D4A92243676B100726D90 /* ManagerProvider.swift in Sources */,
