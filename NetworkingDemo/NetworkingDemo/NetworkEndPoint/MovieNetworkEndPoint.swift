@@ -16,43 +16,46 @@ enum MovieNetworkEndPoint {
     case upcomingMovies
 
 // TODO
-//    static var responseType = MovieList.self
-
-//    func responseTypee() -> Codable {
-//         switch self {
-//         case .latestMovies:
-//            return Movie.self
-//         case .nowPlayingMovies:
-//             return MovieList.self
-//         case .popularMovies:
-//             return MovieByPage.self
-//         case .topRatedMovies:
-//             return MovieByPage.self
-//         case .upcomingMovies:
-//             return MovieList.self
-//         }
-//     }
-
+// static var responseType = MovieList.self
+    var responseTypee: Codable.Type {
+         switch self {
+         case .latestMovies:
+            return Movie.self
+         case .nowPlayingMovies:
+             return MovieList.self
+         case .popularMovies:
+             return MovieByPage.self
+         case .topRatedMovies:
+             return MovieByPage.self
+         case .upcomingMovies:
+             return MovieList.self
+         }
+     }
+    
 }
 
 extension MovieNetworkEndPoint: NetworkEndPoint {
     var path: String {
           switch self {
           case .latestMovies:
-              return Constants.API.MovieAPIEndPoint.Path.latest
+              return Constants.API.MovieNetworkEndPoint.Path.latest
           case .nowPlayingMovies:
-              return Constants.API.MovieAPIEndPoint.Path.nowPlaying
+              return Constants.API.MovieNetworkEndPoint.Path.nowPlaying
           case .popularMovies:
-              return Constants.API.MovieAPIEndPoint.Path.popular
+              return Constants.API.MovieNetworkEndPoint.Path.popular
           case .topRatedMovies:
-              return Constants.API.MovieAPIEndPoint.Path.topRated
+              return Constants.API.MovieNetworkEndPoint.Path.topRated
           case .upcomingMovies:
-              return Constants.API.MovieAPIEndPoint.Path.upcoming
+              return Constants.API.MovieNetworkEndPoint.Path.upcoming
           }
       }
 
     var restMethod: RESTMethod {
         return .get
+    }
+
+    var urlParameters: Parameters? {
+        return [Constants.API.MovieNetworkEndPoint.URLParameter.apiKey: Constants.API.MovieNetworkEndPoint.URLParameter.apiKeyValue]
     }
 
     var bodyParameters: Parameters? {
@@ -61,9 +64,5 @@ extension MovieNetworkEndPoint: NetworkEndPoint {
 
     var headers: Headers? {
         return nil
-    }
-
-    var urlParameters: Parameters? {
-        return [Constants.API.MovieAPIEndPoint.URLParameter.apiKey: Constants.API.MovieAPIEndPoint.URLParameter.apiKeyValue]
     }
 }

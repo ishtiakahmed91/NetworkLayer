@@ -9,14 +9,14 @@
 import Foundation
 
 typealias URLRequestResult = Result<URLRequest, NetworkError>
-typealias DataCompletionBlock = (Result<Data, NetworkError>) -> Void
+typealias DataCompletionBlock = (Result<Decodable, NetworkError>) -> Void
 
 protocol NetworkControlling {
-    func networkRequest(for networkEndPoint: NetworkEndPoint, completionBlock: @escaping DataCompletionBlock)
+    func networkRequest<T>(for networkEndPoint: NetworkEndPoint, responseType: T.Type, completionBlock: @escaping DataCompletionBlock) where T: Decodable
 }
 
 class NetworkController: NetworkControlling {
-    func networkRequest(for networkEndPoint: NetworkEndPoint, completionBlock: @escaping DataCompletionBlock) {
+    func networkRequest<T>(for networkEndPoint: NetworkEndPoint, responseType: T.Type, completionBlock: @escaping DataCompletionBlock) where T: Decodable {
         guard Reachability().isReachable else {
             completionBlock(.failure(.internetNotReachable))
             return
@@ -51,10 +51,14 @@ class NetworkController: NetworkControlling {
                 return
             }
 
-            completionBlock(.success(data))
-
+            do {
+                let result = try JSONDecoder().decode(responseType.self, from: data as Data)
+                completionBlock(.success(result))
+            } catch {
+                completionBlock(.failure(.jsonSerializationFailed))
+            }
         }
-
+        
         dataTask.resume()
     }
 }

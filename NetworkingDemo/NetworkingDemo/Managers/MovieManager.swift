@@ -23,15 +23,11 @@ final class MovieManager: MovieManagement {
     }
 
     func movieList(completionBlock: @escaping MovieListCompletionBlock) {
-        networkController.networkRequest(for: MovieNetworkEndPoint.topRatedMovies) { result in
+        networkController.networkRequest(for: MovieNetworkEndPoint.topRatedMovies, responseType: MovieList.self) { result in
             switch result {
             case .success(let data):
-                do {
-                    let result = try JSONDecoder().decode(MovieList.self, from: data as Data)
-                    completionBlock(.success(result))
-                } catch {
-                    completionBlock(.failure(.jsonSerializationFailed))
-                }
+                let movieList = data as? MovieList
+                print(movieList?.movies?[0].overview)
             case .failure(let networkError):
                 completionBlock(.failure(networkError))
             }

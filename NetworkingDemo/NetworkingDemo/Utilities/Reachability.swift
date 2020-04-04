@@ -9,8 +9,8 @@
 import Foundation
 import SystemConfiguration
 
-public class Reachability {
-    public var isReachable: Bool {
+class Reachability {
+    var isReachable: Bool {
         var zeroAddress = sockaddr_in()
         zeroAddress.sin_len = UInt8(MemoryLayout<sockaddr_in>.size)
         zeroAddress.sin_family = sa_family_t(AF_INET)

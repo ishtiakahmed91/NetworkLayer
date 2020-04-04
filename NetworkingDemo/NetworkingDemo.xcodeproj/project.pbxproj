@@ -24,6 +24,8 @@
 		DD8D4A902436751000726D90 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8D4A8F2436751000726D90 /* NetworkController.swift */; };
 		DD8D4A92243676B100726D90 /* ManagerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8D4A91243676B100726D90 /* ManagerProvider.swift */; };
 		DD8D4A94243676FB00726D90 /* MovieManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8D4A93243676FB00726D90 /* MovieManager.swift */; };
+		DD8D4A962438929100726D90 /* TVShowNetworkEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8D4A952438929000726D90 /* TVShowNetworkEndPoint.swift */; };
+		DD8D4A982438C6D500726D90 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8D4A972438C6D500726D90 /* StringExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +60,8 @@
 		DD8D4A8F2436751000726D90 /* NetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
 		DD8D4A91243676B100726D90 /* ManagerProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerProvider.swift; sourceTree = "<group>"; };
 		DD8D4A93243676FB00726D90 /* MovieManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieManager.swift; sourceTree = "<group>"; };
+		DD8D4A952438929000726D90 /* TVShowNetworkEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowNetworkEndPoint.swift; sourceTree = "<group>"; };
+		DD8D4A972438C6D500726D90 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +168,7 @@
 			children = (
 				DD56BE1C243379C3001FA46C /* NetworkEndPoint.swift */,
 				DD8D4A8824346B3200726D90 /* MovieNetworkEndPoint.swift */,
+				DD8D4A952438929000726D90 /* TVShowNetworkEndPoint.swift */,
 			);
 			path = NetworkEndPoint;
 			sourceTree = "<group>";
@@ -173,6 +178,7 @@
 			children = (
 				DD56BE1A243378A1001FA46C /* Constants.swift */,
 				DD8D4A8C2435303C00726D90 /* Reachability.swift */,
+				DD8D4A972438C6D500726D90 /* StringExtension.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -280,6 +286,7 @@
 			files = (
 				DD8D4A8924346B3200726D90 /* MovieNetworkEndPoint.swift in Sources */,
 				DD8D4A94243676FB00726D90 /* MovieManager.swift in Sources */,
+				DD8D4A982438C6D500726D90 /* StringExtension.swift in Sources */,
 				DD56BDF8243377D5001FA46C /* ViewController.swift in Sources */,
 				DD56BDF4243377D5001FA46C /* AppDelegate.swift in Sources */,
 				DD56BDF6243377D5001FA46C /* SceneDelegate.swift in Sources */,
@@ -288,6 +295,7 @@
 				DD56BE212433A10C001FA46C /* MovieByPage.swift in Sources */,
 				DD8D4A92243676B100726D90 /* ManagerProvider.swift in Sources */,
 				DD8D4A902436751000726D90 /* NetworkController.swift in Sources */,
+				DD8D4A962438929100726D90 /* TVShowNetworkEndPoint.swift in Sources */,
 				DD56BE232433ADC9001FA46C /* MovieList.swift in Sources */,
 				DD56BE1F24338B21001FA46C /* NetworkError.swift in Sources */,
 				DD8D4A8D2435303C00726D90 /* Reachability.swift in Sources */,
