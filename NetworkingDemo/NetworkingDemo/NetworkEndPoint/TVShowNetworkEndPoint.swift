@@ -9,7 +9,7 @@
 import Foundation
 
 enum TVShowNetworkEndPoint {
-    case latestTVShows
+    case latest
     case credits(tvId: String)
     case addRating(tvId: String)
     case deleteRating(tvId: String, value: Float)
@@ -18,7 +18,7 @@ enum TVShowNetworkEndPoint {
 extension TVShowNetworkEndPoint: NetworkEndPoint {
     var path: String {
         switch self {
-        case .latestTVShows:
+        case .latest:
             return Constants.EndPoint.TVShow.Path.latest
         case .credits(let tvId):
             return Constants.EndPoint.TVShow.SemiPath.tv
@@ -33,7 +33,7 @@ extension TVShowNetworkEndPoint: NetworkEndPoint {
 
     var restMethod: RESTMethod {
         switch self {
-        case .latestTVShows, .credits:
+        case .latest, .credits:
             return .get
         case .addRating:
             return .post
@@ -48,7 +48,7 @@ extension TVShowNetworkEndPoint: NetworkEndPoint {
 
     var bodyParameters: Parameters? {
         switch self {
-        case .latestTVShows, .credits, .addRating:
+        case .latest, .credits, .addRating:
             return nil
         case .deleteRating(_, let value):
             return [Constants.EndPoint.TVShow.BodyParameter.valueKey: value]

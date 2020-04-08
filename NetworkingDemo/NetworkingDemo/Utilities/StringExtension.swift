@@ -10,6 +10,7 @@ import Foundation
 
 extension String {
     func appendPath(_ path: String) -> String {
+        precondition(path.count>0)
         return self + "/" + path
     }
 }

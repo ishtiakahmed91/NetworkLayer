@@ -13,7 +13,7 @@ struct TVShow: Codable {
     let firstAirDate: String?
     let lastAirDate: String?
     let name: String?
-
+    
     enum CodingKeys: String, CodingKey {
         case id
         case firstAirDate = "first_air_date"

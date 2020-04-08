@@ -11,7 +11,7 @@ import Foundation
 typealias MovieListCompletionBlock = (Result<MovieList, NetworkError>) -> Void
 
 protocol MovieManagement {
-    func movieList(completionBlock: @escaping MovieListCompletionBlock)
+    func topRatedMovies(completionBlock: @escaping MovieListCompletionBlock)
 }
 
 final class MovieManager: MovieManagement {
@@ -22,8 +22,8 @@ final class MovieManager: MovieManagement {
         self.networkController = networkController
     }
 
-    func movieList(completionBlock: @escaping MovieListCompletionBlock) {
-        networkController.networkRequest(for: MovieNetworkEndPoint.topRatedMovies, responseType: MovieList.self) { result in
+    func topRatedMovies(completionBlock: @escaping MovieListCompletionBlock) {
+        networkController.networkRequest(for: MovieNetworkEndPoint.topRated, responseType: MovieList.self) { result in
             switch result {
             case .success(let data):
                 guard let movieList = data as? MovieList else {

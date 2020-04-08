@@ -8,12 +8,12 @@
 
 import Foundation
 
-struct MovieByPage: Codable {
+struct MoviePage: Codable {
     let page: Int?
     let totalMovies: Int?
     let totalPages: Int?
     let movies: [Movie]?
-
+    
     enum CodingKeys: String, CodingKey {
         case page
         case totalMovies = "total_results"
@@ -31,7 +31,7 @@ struct Movie: Codable {
     let posterPath: String?
     let backDropPath: String?
     let releaseDate: String?
-
+    
     enum CodingKeys: String, CodingKey {
         case id
         case title

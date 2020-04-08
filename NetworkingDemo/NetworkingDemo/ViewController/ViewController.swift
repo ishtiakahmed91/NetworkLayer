@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func fetchData(_ sender: Any) {
-        ManagerProvider.sharedInstance.movieManager.movieList { result in
+        ManagerProvider.sharedInstance.movieManager.topRatedMovies { result in
             switch result {
             case .success(let resultValue):
                 print("\(String(describing: resultValue))")
@@ -23,7 +23,7 @@ class ViewController: UIViewController {
             }
         }
 
-        ManagerProvider.sharedInstance.tvShowManager.tvShowCredits(tvId: "1", completionBlock: { result in
+        ManagerProvider.sharedInstance.tvShowManager.credits(tvId: "1", completionBlock: { result in
             switch result {
             case .success(let resultValue):
                 print("\(String(describing: resultValue))")

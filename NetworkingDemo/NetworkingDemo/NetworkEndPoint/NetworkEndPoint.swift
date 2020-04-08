@@ -8,6 +8,7 @@
 
 import Foundation
 
+// MARK: - Headers & Parameters
 public typealias Headers = [String: String]
 public typealias Parameters = [String: Any]
 

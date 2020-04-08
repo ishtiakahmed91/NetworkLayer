@@ -9,45 +9,28 @@
 import Foundation
 
 enum MovieNetworkEndPoint {
-    case latestMovies
-    case nowPlayingMovies
-    case popularMovies
-    case topRatedMovies
-    case upcomingMovies
-
-// TODO
-// static var responseType = MovieList.self
-    var responseTypee: Codable.Type {
-         switch self {
-         case .latestMovies:
-            return Movie.self
-         case .nowPlayingMovies:
-             return MovieList.self
-         case .popularMovies:
-             return MovieByPage.self
-         case .topRatedMovies:
-             return MovieByPage.self
-         case .upcomingMovies:
-             return MovieList.self
-         }
-     }
+    case latest
+    case nowPlaying
+    case popular
+    case topRated
+    case upcoming
 }
 
 extension MovieNetworkEndPoint: NetworkEndPoint {
     var path: String {
-          switch self {
-          case .latestMovies:
-              return Constants.EndPoint.Movie.Path.latest
-          case .nowPlayingMovies:
-              return Constants.EndPoint.Movie.Path.nowPlaying
-          case .popularMovies:
-              return Constants.EndPoint.Movie.Path.popular
-          case .topRatedMovies:
-              return Constants.EndPoint.Movie.Path.topRated
-          case .upcomingMovies:
-              return Constants.EndPoint.Movie.Path.upcoming
-          }
-      }
+        switch self {
+        case .latest:
+            return Constants.EndPoint.Movie.Path.latest
+        case .nowPlaying:
+            return Constants.EndPoint.Movie.Path.nowPlaying
+        case .popular:
+            return Constants.EndPoint.Movie.Path.popular
+        case .topRated:
+            return Constants.EndPoint.Movie.Path.topRated
+        case .upcoming:
+            return Constants.EndPoint.Movie.Path.upcoming
+        }
+    }
 
     var restMethod: RESTMethod {
         return .get

@@ -10,7 +10,7 @@ import Foundation
 
 struct MovieList: Codable {
     let movies: [Movie]?
-
+    
     enum CodingKeys: String, CodingKey {
         case movies = "results"
     }

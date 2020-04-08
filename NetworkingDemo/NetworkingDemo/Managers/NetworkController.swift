@@ -13,9 +13,12 @@ typealias DataCompletionBlock = (Result<Decodable, NetworkError>) -> Void
 
 protocol NetworkControlling {
     func networkRequest<T>(for networkEndPoint: NetworkEndPoint, responseType: T.Type, completionBlock: @escaping DataCompletionBlock) where T: Decodable
+    func download()
+    func upload()
 }
 
 class NetworkController: NetworkControlling {
+
     func networkRequest<T>(for networkEndPoint: NetworkEndPoint, responseType: T.Type, completionBlock: @escaping DataCompletionBlock) where T: Decodable {
         guard Reachability().isReachable else {
             completionBlock(.failure(.internetNotReachable))
@@ -61,6 +64,9 @@ class NetworkController: NetworkControlling {
         
         dataTask.resume()
     }
+
+    func download() {}
+    func upload() {}
 }
 
 // MARK: - Private
