@@ -27,18 +27,26 @@ enum RESTMethod: String {
     case delete = "DELETE"
 }
 
+// MARK: - Task
+enum Task {
+    case request
+    case parameterizedRequest(urlParameters: Parameters?, bodyParameters: Parameters?)
+    case download
+    case upload
+}
+
 // MARK: - NetworkEndPoint Implementation
 protocol NetworkEndPoint {
     var baseURLString: String { get }
     var path: String { get }
     var restMethod: RESTMethod { get }
-    var urlParameters: Parameters? { get }
-    var bodyParameters: Parameters? { get }
+    var task: Task { get }
     var headers: Headers? { get }
 }
 
 // MARK: - Default NetworkEndPoint Implementation
 extension NetworkEndPoint {
+    /// Default base URL - update base URL when needed
     var baseURLString: String {
         switch ManagerProvider.sharedInstance.networkEnvironment {
         case .qa:
@@ -46,5 +54,10 @@ extension NetworkEndPoint {
         case .production:
             return Constants.EndPoint.BaseURL.production
         }
+    }
+
+    /// Default headers is nil - update header when needed
+    var headers: Headers? {
+        return nil
     }
 }

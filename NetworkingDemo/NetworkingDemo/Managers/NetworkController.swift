@@ -10,16 +10,31 @@ import Foundation
 
 typealias URLRequestResult = Result<URLRequest, NetworkError>
 typealias DataCompletionBlock = (Result<Decodable, NetworkError>) -> Void
+typealias URLCompletionBlock = (Result<URL?, NetworkError>) -> Void
 
 protocol NetworkControlling {
-    func networkRequest<T>(for networkEndPoint: NetworkEndPoint, responseType: T.Type, completionBlock: @escaping DataCompletionBlock) where T: Decodable
-    func download()
+    func networkRequest<T>(for networkEndPoint: NetworkEndPoint,
+                           responseType: T.Type,
+                           completionBlock: @escaping DataCompletionBlock) where T: Decodable
+    func cancelNetworkRequest()
+    func download(_ action: DownloadAction,for networkEndPoint: NetworkEndPoint, completionBlock: @escaping URLCompletionBlock)
     func upload()
 }
 
 class NetworkController: NetworkControlling {
 
-    func networkRequest<T>(for networkEndPoint: NetworkEndPoint, responseType: T.Type, completionBlock: @escaping DataCompletionBlock) where T: Decodable {
+    private var dataTask: URLSessionTask?
+    private var activeDownloads: [URL: Download] = [:]
+
+    lazy private var downloadSession: URLSession = {
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = Constants.EndPoint.timeoutIntervalForResource
+        return URLSession(configuration: configuration)
+    }()
+
+    func networkRequest<T>(for networkEndPoint: NetworkEndPoint,
+                           responseType: T.Type,
+                           completionBlock: @escaping DataCompletionBlock) where T: Decodable {
         guard Reachability().isReachable else {
             completionBlock(.failure(.internetNotReachable))
             return
@@ -42,7 +57,7 @@ class NetworkController: NetworkControlling {
             return
         }
 
-        let dataTask = session.dataTask(with: request) { [weak self] (data, response, error) in
+        dataTask = session.dataTask(with: request) { [weak self] (data, response, error) in
             if let response = response as? HTTPURLResponse,
                 let networkError = self?.networkError(response),
                 error != nil {
@@ -62,10 +77,43 @@ class NetworkController: NetworkControlling {
             }
         }
         
-        dataTask.resume()
+        dataTask?.resume()
     }
 
-    func download() {}
+    func cancelNetworkRequest() {
+        if let dataTask = dataTask {
+            dataTask.cancel()
+        }
+    }
+
+    func download(_ action: DownloadAction,for networkEndPoint: NetworkEndPoint, completionBlock: @escaping URLCompletionBlock) {
+        var urlRequest: URLRequest? {
+            switch generateRequest(using: networkEndPoint) {
+            case .success(let urlRequestValue):
+                return urlRequestValue
+            case .failure(let networkError):
+                completionBlock(.failure(networkError))
+                return nil
+            }
+        }
+        
+        guard let sourceURL = urlRequest?.url else {
+            completionBlock(.failure(.urlMissing))
+            return
+        }
+
+        switch action {
+        case .start:
+            startDownload(sourceURL, completionBlock: completionBlock)
+        case .resume:
+            resumeDownload(sourceURL, completionBlock: completionBlock)
+        case .cancel:
+            cancelDownload(sourceURL)
+        case .pause:
+            pauseDownload(sourceURL)
+        }
+    }
+
     func upload() {}
 }
 
@@ -83,10 +131,15 @@ private extension NetworkController {
                                     timeoutInterval: Constants.EndPoint.timeoutInterval)
         urlRequest.httpMethod = networkEndPoint.restMethod.rawValue
 
+        switch networkEndPoint.task {
+        case .parameterizedRequest(urlParameters: let urlParameters, bodyParameters: let bodyParameters):
+            appendURLParameters(urlParameters, in: &urlRequest)
+            appendBodyParameters(bodyParameters, in: &urlRequest)
+        default:
+            urlRequest.setValue(Constants.EndPoint.ContentType.applicationJson, forHTTPHeaderField: Constants.EndPoint.ContentType.key)
+        }
+        
         appendHeaders(networkEndPoint.headers, in: &urlRequest)
-        appendURLParameters(networkEndPoint.urlParameters, in: &urlRequest)
-        appendBodyParameters(networkEndPoint.bodyParameters, in: &urlRequest)
-
         return .success(urlRequest)
     }
 
@@ -139,5 +192,79 @@ private extension NetworkController {
                 urlRequest.setValue(Constants.EndPoint.ContentType.applicationJson, forHTTPHeaderField: Constants.EndPoint.ContentType.key)
             }
         }
+    }
+}
+
+private extension NetworkController {
+    func localFileGeneration(sourceURL: URL,
+                             temporaryURL: URL?,
+                             response: URLResponse?,
+                             error: Error?,
+                             completionBlock: @escaping URLCompletionBlock) {
+
+        guard let temporaryURL = temporaryURL else { return }
+
+        let download = self.activeDownloads[sourceURL]
+        self.activeDownloads[sourceURL] = nil
+        let previewURL = self.localFilePath(for: sourceURL)
+        let fileManager = FileManager.default
+        try? fileManager.removeItem(at: previewURL)
+
+        do {
+            try fileManager.copyItem(at: temporaryURL, to: previewURL)
+            download?.previewURL = previewURL
+            download?.downloadState = .finished
+            self.activeDownloads[sourceURL] = nil
+            completionBlock(.success(previewURL))
+        } catch let error {
+            print("Could not copy file to disk: \(error.localizedDescription)")
+            //TODO
+        }
+    }
+
+    func startDownload(_ sourceURL: URL, completionBlock: @escaping URLCompletionBlock) {
+        let download = Download(sourceURL: sourceURL)
+        download.urlSessionDownloadTask = downloadSession.downloadTask(with: sourceURL, completionHandler: {(temporaryURL, response, error) in
+            self.localFileGeneration(sourceURL: sourceURL, temporaryURL: temporaryURL, response: response, error: error, completionBlock: completionBlock)
+        })
+
+        download.urlSessionDownloadTask?.resume()
+        download.downloadState = .started
+        activeDownloads[sourceURL] = download
+    }
+
+    func cancelDownload(_ sourceURL: URL) {
+        guard let download = activeDownloads[sourceURL] else { return }
+        download.urlSessionDownloadTask?.cancel()
+        activeDownloads[sourceURL] = nil
+    }
+
+    func pauseDownload(_ sourceURL: URL) {
+        guard let download = activeDownloads[sourceURL], download.downloadState == .started else { return }
+        download.urlSessionDownloadTask?.cancel(byProducingResumeData: { data in
+            download.resumeData = data
+        })
+        download.downloadState = .paused
+    }
+
+    func resumeDownload(_ sourceURL: URL, completionBlock: @escaping URLCompletionBlock) {
+        guard let download = activeDownloads[sourceURL] else { return }
+        if let resumeData = download.resumeData {
+            download.urlSessionDownloadTask = downloadSession.downloadTask(withResumeData: resumeData, completionHandler: {(temporaryURL, response, error) in
+                self.localFileGeneration(sourceURL: sourceURL, temporaryURL: temporaryURL, response: response, error: error, completionBlock: completionBlock)
+            })
+        } else {
+            download.urlSessionDownloadTask = downloadSession.downloadTask(with: sourceURL, completionHandler: {(temporaryURL, response, error) in
+                self.localFileGeneration(sourceURL: sourceURL, temporaryURL: temporaryURL, response: response, error: error, completionBlock: completionBlock)
+            })
+        }
+
+        download.urlSessionDownloadTask?.resume()
+        download.downloadState = .started
+    }
+
+    func localFilePath(for url: URL) -> URL {
+        let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        return documentsPath.appendingPathComponent(url.lastPathComponent)
     }
 }

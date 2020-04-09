@@ -6,9 +6,7 @@
 //  Copyright © 2020 Ishtiak Ahmed. All rights reserved.
 //
 
-import Foundation
-
-public enum NetworkError: Error {
+enum NetworkError: Error {
     case timeout
     case internetNotReachable
     case client
@@ -24,27 +22,27 @@ public enum NetworkError: Error {
     var description: String {
         switch self {
         case .timeout:
-            return "timeout"
+            return "Request timeout. Please try again."
         case .internetNotReachable:
-            return "internetNotReachable"
+            return "Internet is not reachable."
         case .client:
-            return "clientError"
+            return "Client error"
         case .redirection:
-            return "redirectionError"
+            return "Redirection error"
         case .server:
-            return "serverError"
+            return "Server error"
         case .jsonSerializationFailed:
-            return "jsonSerializationFailed"
+            return "JSON serialization failed"
         case .encodingFailed:
-            return "encodingFailed"
+            return "Encoding failed."
         case .requestMissing:
-            return "requestMissing"
+            return "Request missing"
         case .urlMissing:
-            return "urlMissing"
+            return "URL missing"
         case .dataMissing:
-            return "dataMissing"
+            return "Data missing"
         case .unrecognized:
-            return "unrecognized"
+            return "Unrecognized error"
         }
     }
 }

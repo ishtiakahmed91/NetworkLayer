@@ -12,7 +12,8 @@ struct Constants {
     
     struct EndPoint {
         static let timeoutInterval = 60.0
-        
+        static let timeoutIntervalForResource = 120.0
+
         struct ContentType {
             static let key = "Content-Type"
             static let applicationJson = "application/json"
@@ -22,6 +23,7 @@ struct Constants {
         struct BaseURL {
             static let qa = "https://qa.themoviedb.org/3"
             static let production = "https://api.themoviedb.org/3"
+            static let imageDownload = "https://image.tmdb.org/t/p/w500"
         }
         
         struct Movie {

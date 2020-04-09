@@ -19,6 +19,9 @@ protocol ManagerProviding {
     
     /// Instance to access TVShowManagement
     var tvShowManager: TVShowManagement! { get }
+
+    /// Instance to access DownloadManagement
+    var downloadManager: DownloadManagement! { get }
     
     /// Instance of environment
     var networkEnvironment : NetworkEnvironment {get}
@@ -33,10 +36,12 @@ class ManagerProvider: ManagerProviding {
     var movieManager: MovieManagement!
     var tvShowManager: TVShowManagement!
     var networkEnvironment : NetworkEnvironment = .production
-    
+    var downloadManager: DownloadManagement!
+
     public func updateManagers() {
         movieManager = MovieManager(networkController: NetworkController())
         tvShowManager = TVShowManager(networkController: NetworkController())
+        downloadManager = DownloadManager(networkController: NetworkController())
         networkEnvironment = .production
     }
     

@@ -42,20 +42,14 @@ extension TVShowNetworkEndPoint: NetworkEndPoint {
         }
     }
 
-    var urlParameters: Parameters? {
-        return [Constants.EndPoint.Movie.URLParameter.apiKey: Constants.EndPoint.Movie.URLParameter.apiKeyValue]
-    }
-
-    var bodyParameters: Parameters? {
+    var task: Task {
+        let urlParameters = [Constants.EndPoint.Movie.URLParameter.apiKey: Constants.EndPoint.Movie.URLParameter.apiKeyValue]
         switch self {
         case .latest, .credits, .addRating:
-            return nil
+            return .parameterizedRequest(urlParameters: urlParameters, bodyParameters: nil)
         case .deleteRating(_, let value):
-            return [Constants.EndPoint.TVShow.BodyParameter.valueKey: value]
+            return .parameterizedRequest(urlParameters: urlParameters,
+                                         bodyParameters: [Constants.EndPoint.TVShow.BodyParameter.valueKey: value])
         }
-    }
-
-    var headers: Headers? {
-        return nil
-    }
+      }
 }

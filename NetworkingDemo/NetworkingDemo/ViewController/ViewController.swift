@@ -9,6 +9,9 @@
 import UIKit
 
 class ViewController: UIViewController {
+
+    @IBOutlet weak var imageView: UIImageView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -31,5 +34,19 @@ class ViewController: UIViewController {
                 print(networkError.description)
             }
         })
+
+        ManagerProvider.sharedInstance.downloadManager.download(.start, path: "8ZX18L5m6rH5viSYpRnTSbb9eXh.jpg") { result in
+            switch result {
+            case .success(let sourceURL):
+                DispatchQueue.main.async {
+                    if let sourceURL = sourceURL, let imageData = NSData(contentsOf: sourceURL) {
+                        let image = UIImage(data: imageData as Data)
+                        self.imageView.image = image
+                    }
+                }
+            case .failure(let networkError):
+                print(networkError)
+            }
+        }
     }
 }

@@ -29,6 +29,9 @@
 		DD8D4A9E2438D5B800726D90 /* TVShowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8D4A9D2438D5B800726D90 /* TVShowManager.swift */; };
 		DD8D4AA02438D73D00726D90 /* CastList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8D4A9F2438D73D00726D90 /* CastList.swift */; };
 		DD8D4AA22438E5C200726D90 /* TVShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8D4AA12438E5C200726D90 /* TVShow.swift */; };
+		DD8D4AA4243DE58600726D90 /* Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8D4AA3243DE58600726D90 /* Download.swift */; };
+		DD8D4AA6243F11F000726D90 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8D4AA5243F11F000726D90 /* DownloadManager.swift */; };
+		DD8D4AA8243F915900726D90 /* DownloadNetworkEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8D4AA7243F915900726D90 /* DownloadNetworkEndPoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +71,9 @@
 		DD8D4A9D2438D5B800726D90 /* TVShowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowManager.swift; sourceTree = "<group>"; };
 		DD8D4A9F2438D73D00726D90 /* CastList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastList.swift; sourceTree = "<group>"; };
 		DD8D4AA12438E5C200726D90 /* TVShow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShow.swift; sourceTree = "<group>"; };
+		DD8D4AA3243DE58600726D90 /* Download.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Download.swift; sourceTree = "<group>"; };
+		DD8D4AA5243F11F000726D90 /* DownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
+		DD8D4AA7243F915900726D90 /* DownloadNetworkEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadNetworkEndPoint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +174,7 @@
 				DD8D4A91243676B100726D90 /* ManagerProvider.swift */,
 				DD8D4A93243676FB00726D90 /* MovieManager.swift */,
 				DD8D4A9D2438D5B800726D90 /* TVShowManager.swift */,
+				DD8D4AA5243F11F000726D90 /* DownloadManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -178,6 +185,7 @@
 				DD56BE1C243379C3001FA46C /* NetworkEndPoint.swift */,
 				DD8D4A8824346B3200726D90 /* MovieNetworkEndPoint.swift */,
 				DD8D4A952438929000726D90 /* TVShowNetworkEndPoint.swift */,
+				DD8D4AA7243F915900726D90 /* DownloadNetworkEndPoint.swift */,
 			);
 			path = NetworkEndPoint;
 			sourceTree = "<group>";
@@ -188,6 +196,7 @@
 				DD56BE1A243378A1001FA46C /* Constants.swift */,
 				DD8D4A8C2435303C00726D90 /* Reachability.swift */,
 				DD8D4A972438C6D500726D90 /* StringExtension.swift */,
+				DD8D4AA3243DE58600726D90 /* Download.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -293,6 +302,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD8D4AA8243F915900726D90 /* DownloadNetworkEndPoint.swift in Sources */,
 				DD8D4A8924346B3200726D90 /* MovieNetworkEndPoint.swift in Sources */,
 				DD8D4A94243676FB00726D90 /* MovieManager.swift in Sources */,
 				DD8D4A982438C6D500726D90 /* StringExtension.swift in Sources */,
@@ -304,7 +314,9 @@
 				DD8D4AA22438E5C200726D90 /* TVShow.swift in Sources */,
 				DD8D4AA02438D73D00726D90 /* CastList.swift in Sources */,
 				DD56BE1B243378A1001FA46C /* Constants.swift in Sources */,
+				DD8D4AA6243F11F000726D90 /* DownloadManager.swift in Sources */,
 				DD56BE212433A10C001FA46C /* MoviePage.swift in Sources */,
+				DD8D4AA4243DE58600726D90 /* Download.swift in Sources */,
 				DD8D4A92243676B100726D90 /* ManagerProvider.swift in Sources */,
 				DD8D4A902436751000726D90 /* NetworkController.swift in Sources */,
 				DD8D4A962438929100726D90 /* TVShowNetworkEndPoint.swift in Sources */,

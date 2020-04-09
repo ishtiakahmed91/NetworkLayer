@@ -36,15 +36,8 @@ extension MovieNetworkEndPoint: NetworkEndPoint {
         return .get
     }
 
-    var urlParameters: Parameters? {
-        return [Constants.EndPoint.Movie.URLParameter.apiKey: Constants.EndPoint.Movie.URLParameter.apiKeyValue]
-    }
-
-    var bodyParameters: Parameters? {
-        return nil
-    }
-
-    var headers: Headers? {
-        return nil
+    var task: Task {
+        return .parameterizedRequest(urlParameters: [Constants.EndPoint.Movie.URLParameter.apiKey: Constants.EndPoint.Movie.URLParameter.apiKeyValue],
+                                     bodyParameters: nil)
     }
 }

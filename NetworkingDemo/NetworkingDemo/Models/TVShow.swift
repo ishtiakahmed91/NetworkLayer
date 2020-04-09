@@ -6,8 +6,6 @@
 //  Copyright © 2020 Ishtiak Ahmed. All rights reserved.
 //
 
-import Foundation
-
 struct TVShow: Codable {
     let id: Int?
     let firstAirDate: String?

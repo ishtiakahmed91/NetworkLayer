@@ -16,24 +16,36 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cWw-57-ajr">
-                                <rect key="frame" x="170.5" y="433" width="73" height="30"/>
+                                <rect key="frame" x="170.5" y="94" width="73" height="30"/>
                                 <state key="normal" title="Fetch data"/>
                                 <connections>
                                     <action selector="fetchData:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0pB-zO-ERY"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wSE-Ky-QXK">
+                                <rect key="frame" x="20" y="132" width="374" height="493"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="493" id="9sQ-M7-oUP"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="cWw-57-ajr" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="JxB-Sg-F06"/>
-                            <constraint firstItem="cWw-57-ajr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Xkj-Ie-NKX"/>
+                            <constraint firstItem="wSE-Ky-QXK" firstAttribute="top" secondItem="cWw-57-ajr" secondAttribute="bottom" constant="8" id="2GB-3K-OlZ"/>
+                            <constraint firstItem="wSE-Ky-QXK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="BPR-h4-Lw6"/>
+                            <constraint firstItem="cWw-57-ajr" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="Cdr-Qf-tiP"/>
+                            <constraint firstItem="cWw-57-ajr" firstAttribute="centerX" secondItem="wSE-Ky-QXK" secondAttribute="centerX" id="Uut-PK-9rj"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wSE-Ky-QXK" secondAttribute="trailing" constant="20" id="zdI-KZ-E29"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="imageView" destination="wSE-Ky-QXK" id="GSO-Ss-Tbf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="70"/>
+            <point key="canvasLocation" x="137.68115942028987" y="69.642857142857139"/>
         </scene>
     </scenes>
 </document>

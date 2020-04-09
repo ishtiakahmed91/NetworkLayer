@@ -6,8 +6,6 @@
 //  Copyright © 2020 Ishtiak Ahmed. All rights reserved.
 //
 
-import Foundation
-
 struct MoviePage: Codable {
     let page: Int?
     let totalMovies: Int?
@@ -21,7 +19,6 @@ struct MoviePage: Codable {
         case movies = "results"
     }
 }
-
 
 struct Movie: Codable {
     let id: Int?
