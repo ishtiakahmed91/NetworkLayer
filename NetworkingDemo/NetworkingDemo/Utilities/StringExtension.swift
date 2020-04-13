@@ -10,7 +10,9 @@ import Foundation
 
 extension String {
     func appendPath(_ path: String) -> String {
-        let trimmedPath = path.trimmingCharacters(in: .whitespacesAndNewlines)
+        var trimmedPath = path.trimmingCharacters(in: .whitespacesAndNewlines)
+        if trimmedPath.first == "/"  { trimmedPath.removeFirst() }
+        if trimmedPath.last == "/"  { trimmedPath.removeLast() }
         return self + "/" + trimmedPath
     }
 }

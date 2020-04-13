@@ -15,32 +15,45 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wSE-Ky-QXK">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cWw-57-ajr">
-                                <rect key="frame" x="170.5" y="94" width="73" height="30"/>
-                                <state key="normal" title="Fetch data"/>
+                                <rect key="frame" x="0.0" y="94" width="222" height="30"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="  Suggest me a top rated movie  ">
+                                    <color key="titleColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
-                                    <action selector="fetchData:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0pB-zO-ERY"/>
+                                    <action selector="fetchTopRatedMovies:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0pB-zO-ERY"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wSE-Ky-QXK">
-                                <rect key="frame" x="20" y="132" width="374" height="493"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="493" id="9sQ-M7-oUP"/>
-                                </constraints>
-                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P1i-4F-uCC">
+                                <rect key="frame" x="20" y="144" width="374" height="0.0"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.39714458626760563" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="highlightedColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="shadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="wSE-Ky-QXK" firstAttribute="top" secondItem="cWw-57-ajr" secondAttribute="bottom" constant="8" id="2GB-3K-OlZ"/>
-                            <constraint firstItem="wSE-Ky-QXK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="BPR-h4-Lw6"/>
-                            <constraint firstItem="cWw-57-ajr" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="Cdr-Qf-tiP"/>
-                            <constraint firstItem="cWw-57-ajr" firstAttribute="centerX" secondItem="wSE-Ky-QXK" secondAttribute="centerX" id="Uut-PK-9rj"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wSE-Ky-QXK" secondAttribute="trailing" constant="20" id="zdI-KZ-E29"/>
+                            <constraint firstItem="P1i-4F-uCC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="F5J-yA-5tb"/>
+                            <constraint firstItem="wSE-Ky-QXK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="INb-Lr-iJI"/>
+                            <constraint firstItem="wSE-Ky-QXK" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Ozb-EK-a7J"/>
+                            <constraint firstItem="P1i-4F-uCC" firstAttribute="top" secondItem="cWw-57-ajr" secondAttribute="bottom" constant="20" id="Wlf-t0-3zZ"/>
+                            <constraint firstItem="cWw-57-ajr" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="Wub-E7-Mb8"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wSE-Ky-QXK" secondAttribute="trailing" id="aJJ-dX-kfn"/>
+                            <constraint firstAttribute="bottom" secondItem="wSE-Ky-QXK" secondAttribute="bottom" id="c25-4G-aIJ"/>
+                            <constraint firstItem="cWw-57-ajr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="cIh-X2-HRr"/>
+                            <constraint firstAttribute="trailing" secondItem="P1i-4F-uCC" secondAttribute="trailing" constant="20" id="dc7-0y-rpA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="imageView" destination="wSE-Ky-QXK" id="GSO-Ss-Tbf"/>
+                        <outlet property="movieNameLabel" destination="P1i-4F-uCC" id="kH3-3O-jG3"/>
+                        <outlet property="posterImageView" destination="wSE-Ky-QXK" id="GSO-Ss-Tbf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -123,7 +123,6 @@
 				DD56BE152433782D001FA46C /* App */,
 				DD56BDF9243377D5001FA46C /* Main.storyboard */,
 				DD56BDFC243377D7001FA46C /* Assets.xcassets */,
-				DD56BDFE243377D7001FA46C /* LaunchScreen.storyboard */,
 				DD56BE01243377D7001FA46C /* Info.plist */,
 			);
 			path = NetworkingDemo;
@@ -141,6 +140,7 @@
 		DD56BE152433782D001FA46C /* App */ = {
 			isa = PBXGroup;
 			children = (
+				DD56BDFE243377D7001FA46C /* LaunchScreen.storyboard */,
 				DD56BDF5243377D5001FA46C /* SceneDelegate.swift */,
 				DD56BDF3243377D5001FA46C /* AppDelegate.swift */,
 			);
